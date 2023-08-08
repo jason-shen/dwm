@@ -1,0 +1,18 @@
+#!/bin/sh
+
+dayanddate () {
+	LC_TIME="en_US.UTF-8" date '+%G %B %e %A'
+}
+
+wifi () {
+	~/.scripts/statusbar/wifi
+}
+
+timedate () {
+	date '+%I:%M:%S %p '
+}
+
+while :; do
+	xsetroot -name "$(dayanddate)"";""$(wifi)"" ""$(timedate)"
+	sleep 1
+done
