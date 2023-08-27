@@ -1,0 +1,43 @@
+#!/bin/sh
+
+dayanddate () {
+	LC_TIME="en_US.UTF-8" date '+%B %e %A'
+}
+
+wifi () {
+	~/.scripts/statusbar/wifi
+}
+## DISK
+hdd() {
+  hdd="$(df -h | awk 'NR==4{print $3, $5}')"
+  echo "💿 $hdd"
+}
+
+## RAM
+mem() {
+  mem=`free | awk '/Mem/ {printf "%dM/%dM\n", $3 / 1024.0, $2 / 1024.0 }'`
+  echo "💾 $mem"
+}
+
+## CPU
+cpu() {
+	cpu_usage=$(top -n 1 -b | awk '/^%Cpu/{print $2}')
+
+  	echo "💻 $cpu_usage%"
+}
+
+## VOLUME
+vol() {
+    vol=`amixer get Master | awk -F'[][]' 'END{ print $4":"$2 }' | sed 's/on://g'`
+    echo "🔈 $vol"
+}
+
+
+timedate () {
+	date '+%I:%M:%S %p '
+}
+
+while :; do
+	xsetroot -name "$(dayanddate)"";""$(cpu)"" ""$(mem)"" ""$(hdd)"" ""$(vol)"" ""$(timedate)"
+	sleep 1
+done
