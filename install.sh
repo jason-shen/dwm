@@ -72,10 +72,10 @@ sudo apt install fonts-font-awesome fonts-ubuntu fonts-liberation2 fonts-liberat
 xdg-user-dirs-update
 
 # Install Lightdm Console Display Manager
-# sudo apt install -y lightdm lightdm-gtk-greeter-settings slick-greeter
-# sudo systemctl enable lightdm
-# echo 'greeter-session=slick-greeter' >>  sudo tee -a /etc/lightdm/lightdm.conf
-# echo 'greeter-hide-user=false' >>  sudo tee -a /etc/lightdm/lightdm.conf
+sudo apt install -y lightdm lightdm-gtk-greeter-settings slick-greeter
+sudo systemctl enable lightdm
+echo 'greeter-session=slick-greeter' >>  sudo tee -a /etc/lightdm/lightdm.conf
+echo 'greeter-hide-user=false' >>  sudo tee -a /etc/lightdm/lightdm.conf
 
 # Ly Console Manager
 # Needed packages
@@ -109,7 +109,7 @@ sudo cp ./temp /usr/share/xsessions/dwm.desktop;rm ./temp
 mkdir ~/.config/suckless
 
 sudo apt install -y libx11-dev
-./make clean install
+make clean install
 # Move install directory, make, and install
 cd ~/.config/suckless
 tools=( "dmenu" "st" "slstatus" "slock" "tabbed" )
@@ -123,7 +123,7 @@ done
 
 # Install Nerd Fonts
 source ./nerdfonts.sh
-
+cp .script ~/
 sudo apt autoremove
 
 printf "\e[1;32mDone! you can now reboot.\e[0m\n"
